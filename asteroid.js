@@ -10,13 +10,20 @@ var AS = (function () {
     var y = Math.floor(Math.random() * 800);
     return new Asteroid(x,  y);
   };
+
+  function Game(canvas) {
+    asteroids = [];
+
+    for (var i=0; i < 11; i++) {
+      asteroids[i] = AS.Asteroid.randomAsteroid();
+    }
+}
+
     return { Asteroid: Asteroid };
 })();
 
-var game = function() {
-  var asterOne = AS.Asteroid.randomAsteroid();
 
-};
+
 
 var ctx = document.getElementById("asterCanvas").getContext("2d");
 ctx.fillStyle="rgba(200, 200, 200, 0.7)";
@@ -33,5 +40,9 @@ ctx.lineTo(145, 125);
 ctx.closePath();
 ctx.fill();
 
+    asteroids = [];
 
+    for (var i=0; i < 11; i++) {
+      asteroids[i] = AS.Asteroid.randomAsteroid();
+    }
 // ctx.stroke();
