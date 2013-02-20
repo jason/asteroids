@@ -77,7 +77,7 @@ var AS = (function () {
     var that = this;
     var ship = new Ship(400, 400, 200, 15);
     var timerID = null;
-    
+
     for (var i=0; i < 10; i++) {
       asteroids[i] = Asteroid.randomAsteroid();
     }
@@ -108,7 +108,7 @@ var AS = (function () {
     this.start = function () {
       that.draw();
 
-      setInterval(function() { that.update(); that.draw(); }, 31);
+      timerID = setInterval(function() { that.update(); that.draw(); }, 31);
       };
     }
 
