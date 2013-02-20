@@ -1,21 +1,35 @@
 var AS = (function () {
 
-  function Asteroid(x, y) {
-    this.x = x;
-    this.y = y;
+  function Asteroid(aX, aY) {
+    var x = aX;
+    var y = aY;
+    var size = Math.floor(Math.random() * 100 + 20);
+
+    var createRandomAsteroid = function() {
+      var x = Math.floor(Math.random() * 800);
+      var y = Math.floor(Math.random() * 800);
+      return new Asteroid(x,  y);
+    };
+
+    var draw = function() {
+     fillStyle="rgba(200, 200, 200, 0.7)";
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
+      ctx.fill(); 
+    };
   }
 
-  Asteroid.randomAsteroid = function() {
-    var x = Math.floor(Math.random() * 800);
-    var y = Math.floor(Math.random() * 800);
-    return new Asteroid(x,  y);
-  };
-
   function Game(canvas) {
-    asteroids = [];
+    var asteroids = [];
 
-    for (var i=0; i < 11; i++) {
-      asteroids[i] = AS.Asteroid.randomAsteroid();
+    for (var i=0; i < 10; i++) {
+      asteroids[i] = Asteroid.createRandomAsteroid();
+    }
+
+    var draw = function() {
+      for (var i=0; i < asteroids.length; i++) {
+        asteroids[i].draw();
+      }  
     }
 }
 
@@ -26,6 +40,7 @@ var AS = (function () {
 
 
 var ctx = document.getElementById("asterCanvas").getContext("2d");
+var g = new AS.Game(ctx);
 ctx.fillStyle="rgba(200, 200, 200, 0.7)";
 ctx.beginPath();
 ctx.arc(300, 575, 40, 0, Math.PI*2);
